@@ -14,7 +14,18 @@ struct LocationsView: View {
             .cornerRadius(20)
             
             NavigationView {
-                EmptyView() // 3
+                List() { ForEach (model.restaurants, id:\.self){restaurant in NavigationLink (destination: EmptyView()){
+                    VStack(alignment: .leading) {
+                        Text(restaurant.city)
+                            .font(.headline)
+                        HStack(alignment: .center) {
+                            Text(restaurant.neighborhood)
+                                .font(.subheadline)
+                            Text(restaurant.phoneNumber)
+                                .font(.subheadline)
+                        }}}
+                    .navigationTitle("Restaurants")}
+                                }
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
             }
