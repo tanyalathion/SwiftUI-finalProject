@@ -21,9 +21,11 @@ struct LocationsView: View {
                         HStack(alignment: .center) {
                             Text(restaurant.neighborhood)
                                 .font(.subheadline)
+                            Spacer()
                             Text(restaurant.phoneNumber)
                                 .font(.subheadline)
-                        }}}
+                        }
+                        .padding(.trailing, 4.0)}}
                     .navigationTitle("Restaurants")}
                                 }
                 .navigationBarTitle("")
