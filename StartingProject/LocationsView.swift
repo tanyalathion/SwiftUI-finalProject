@@ -14,7 +14,7 @@ struct LocationsView: View {
             .cornerRadius(20)
             
             NavigationView {
-                List() { ForEach (model.restaurants, id:\.self){restaurant in NavigationLink (destination: EmptyView()){
+                List() { ForEach (model.restaurants, id:\.self){restaurant in NavigationLink (destination: ReservationForm(restaurant)){
                     VStack(alignment: .leading) {
                         Text(restaurant.city)
                             .font(.headline)
