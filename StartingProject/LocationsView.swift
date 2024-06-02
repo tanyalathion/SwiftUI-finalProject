@@ -12,27 +12,17 @@ struct LocationsView: View {
                 .padding([.top, .bottom], 8)
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(20)
-                NavigationView {
-                    List() { ForEach (model.restaurants, id:\.self){restaurant in NavigationLink (destination: ReservationForm(restaurant)){
-                        VStack(alignment: .leading) {
-                            Text(restaurant.city)
-                                .font(.headline)
-                            HStack(alignment: .center) {
-                                Text(restaurant.neighborhood)
-                                    .font(.subheadline)
-                                Text("-")
-                                Text(restaurant.phoneNumber)
-                                    .font(.subheadline)
-                            }
-                            .padding(.trailing, 4.0)
-                            .font(.system(size: 24))
-                            .foregroundColor(.gray)}}
-                        .navigationTitle("Restaurants")}
+            NavigationView {
+                List(model.restaurants, id: \.self) { restaurant in
+                    NavigationLink(destination: ReservationForm(restaurant)) {
+                        RestaurantView(restaurant)
                     }
                     .navigationBarTitle("")
                     .navigationBarHidden(true)
                 }
+                .listStyle(.plain)
             }
+        }
             .padding(.top, -10)
     }
 }
