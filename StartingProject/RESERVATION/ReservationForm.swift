@@ -50,7 +50,11 @@ struct ReservationForm: View {
                                   value: $party,
                                   formatter: NumberFormatter())
                         .keyboardType(.numberPad)
-                        // add a modifier here
+                        .onChange(of: party) { newValue in
+                                        if newValue == 0 {
+                                            party = 1
+                                        }
+                                    }
                     }
                     
                     
@@ -119,7 +123,7 @@ struct ReservationForm: View {
                     
                     
                     // add the RESERVE button
-                    Button(action: {
+                    Button(action: {validateForm()
 
                     }, label: {
                         Text("CONFIRM RESERVATION")
@@ -147,7 +151,9 @@ struct ReservationForm: View {
                 model.reservation = temporaryReservation
             }
             
-            // add an alert after this line
+            .alert(isPresented: $showFormInvalidMessage) {
+                Alert(title: Text("Erreur"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+            }
             
         }
         .onAppear {
